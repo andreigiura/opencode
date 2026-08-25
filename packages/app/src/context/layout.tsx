@@ -29,9 +29,9 @@ export type { ProjectAvatarVariant }
 const AVATAR_COLOR_KEYS = ["pink", "mint", "orange", "purple", "cyan", "lime"] as const
 const DEFAULT_SIDEBAR_WIDTH = 344
 const DEFAULT_FILE_TREE_WIDTH = 200
-const DEFAULT_SESSION_WIDTH = 600
+const DEFAULT_SESSION_WIDTH = 450 /* DUCK_PREVIEW_MAX: = SESSION_PANEL_WIDTH_MIN, so the preview takes the max width */
 const DEFAULT_TERMINAL_HEIGHT = 280
-const DEFAULT_REVIEW_PANEL_OPENED = false
+const DEFAULT_REVIEW_PANEL_OPENED = true /* DUCK_PREVIEW_DEFAULT */
 export type AvatarColorKey = (typeof AVATAR_COLOR_KEYS)[number]
 
 export function getAvatarColors(key?: string) {
@@ -511,6 +511,19 @@ export const { use: useLayout, provider: LayoutProvider } = createSimpleContext(
           if (project.expanded) server.projects.expand(root)
         }
       })
+    })
+
+    // DUCK_AUTO_PROJECT: register the server's discovered project(s) on the home automatically, so a
+    // single-project sandbox surfaces /work/repo (and its sessions) without a manual "add project"
+    // step. Respects recently-closed (open() no-ops on those). Applied as a fork patch — build-console.sh.
+    createEffect(() => {
+      const discovered = serverSync().data.project
+      if (!discovered) return
+      const have = new Set(server.projects.list().map((p) => p.worktree))
+      const closed = new Set(server.projects.recentlyClosed().map((w) => pathKey(w)))
+      for (const p of discovered) {
+        if (p?.worktree && !have.has(p.worktree) && !closed.has(pathKey(p.worktree))) server.projects.open(p.worktree)
+      }
     })
 
     const enriched = createMemo(() => server.projects.list().map(enrich))

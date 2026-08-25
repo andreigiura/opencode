@@ -1,0 +1,49 @@
+{
+  "$schema": "https://opencode.ai/desktop-theme.json",
+  "name": "duck",
+  "id": "duck",
+  "light": {
+    "palette": {
+      "neutral": "#f4f1ea",
+      "ink": "#23201a",
+      "primary": "#b7791f",
+      "accent": "#8a5a13",
+      "success": "#3f7d4e",
+      "warning": "#b5502a",
+      "error": "#97374a",
+      "info": "#2b6f8f",
+      "diffAdd": "#3f7d4e",
+      "diffDelete": "#97374a"
+    },
+    "overrides": {
+      "syntax-comment": "#8a8271",
+      "syntax-keyword": "#8a5a13",
+      "syntax-string": "#3f7d4e",
+      "syntax-primitive": "#2b6f8f",
+      "syntax-property": "#b5502a",
+      "syntax-constant": "#b7791f"
+    }
+  },
+  "dark": {
+    "palette": {
+      "neutral": "#17150f",
+      "ink": "#efe9db",
+      "primary": "#e8b45a",
+      "accent": "#f0c785",
+      "success": "#7fca8c",
+      "warning": "#e8926b",
+      "error": "#e88ea0",
+      "info": "#7cc4e0",
+      "diffAdd": "#7fca8c",
+      "diffDelete": "#e88ea0"
+    },
+    "overrides": {
+      "syntax-comment": "#8f8672",
+      "syntax-keyword": "#f0c785",
+      "syntax-string": "#7fca8c",
+      "syntax-primitive": "#7cc4e0",
+      "syntax-property": "#e8926b",
+      "syntax-constant": "#e8b45a"
+    }
+  }
+}

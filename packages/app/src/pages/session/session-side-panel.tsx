@@ -238,7 +238,7 @@ export function SessionSidePanel(props: {
   })
   const fileBrowserVisible = createMemo(() => {
     const active = activeTab()
-    return active !== "review" && active !== "context" && active !== "empty"
+    return active !== "review" && active !== "context" && active !== "empty" && active !== "__preview" /* DUCK_PREVIEW_TAB */
   })
   const openFileKeybind = createMemo(() => command.keybindParts("file.open"))
   const closeTabKeybind = createMemo(() => command.keybindParts("tab.close"))
@@ -553,24 +553,11 @@ export function SessionSidePanel(props: {
                               onCleanup(stop)
                             }}
                           >
-                            <Show when={props.reviewSidebarToggle}>
-                              {(toggle) => (
-                                <div class="session-review-v2-sidebar-toggle-slot h-full shrink-0 sticky left-0 z-10 flex items-center justify-center bg-v2-background-bg-base">
-                                  {toggle()(activeTab() === SESSION_OPEN_FILE_TAB)}
-                                </div>
-                              )}
-                            </Show>
-                            <Show when={reviewTab() && props.canReview()}>
-                              <Tabs.Trigger
-                                value="review"
-                                id={reviewTabID}
-                                aria-controls={activeTab() === "review" ? reviewTabPanelID : undefined}
-                              >
-                                {props.hasReview()
-                                  ? language.t("session.review.filesChanged", { count: props.reviewCount() })
-                                  : language.t("session.tab.review")}
-                              </Tabs.Trigger>
-                            </Show>
+                            {/* DUCK_PREVIEW_TAB: the review "Files Changed" tab + file-tree toggle are removed;
+                                the panel opens on the live preview of the builder app (Vite under /__preview/). */}
+                            <Tabs.Trigger value="__preview">
+                              <span>Preview</span>
+                            </Tabs.Trigger>
                             <Show when={contextOpen()}>
                               <Tabs.Trigger
                                 value="context"
@@ -724,6 +711,20 @@ export function SessionSidePanel(props: {
                               <SessionContextTab />
                             </div>
                           </Tabs.Content>
+                        </Show>
+
+                        {/* DUCK_PREVIEW_TAB: iframe the builder app's Vite dev server (same-origin /__preview/) */}
+                        <Show when={activeTab() === "__preview"}>
+                          <div role="tabpanel" data-slot="tabs-content" class="h-full min-h-0 flex flex-col overflow-hidden bg-white">
+                            {/* pointer-events-none while resizing: otherwise the iframe swallows the
+                                drag and the panel resize "loses" the mouse as soon as it crosses it. */}
+                            <iframe
+                              src="/__preview/"
+                              title="Preview"
+                              class="w-full h-full border-0"
+                              classList={{ "pointer-events-none": props.size.active() }}
+                            />
+                          </div>
                         </Show>
 
                         <Show when={fileBrowserMounted()}>

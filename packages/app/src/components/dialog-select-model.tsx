@@ -262,7 +262,9 @@ function createModelSelectorController(input: {
     model
       .list()
       .filter((item) => model.visible({ modelID: item.id, providerID: item.provider.id }))
-      .filter((item) => (input.provider() ? item.provider.id === input.provider() : true)),
+      .filter((item) => (input.provider() ? item.provider.id === input.provider() : true))
+      // DUCK_ONLY_LITELLM: only duck's configured LiteLLM provider (never the models.dev catalog).
+      .filter((item) => item.provider.id === "litellm"),
   )
 
   return {
@@ -450,9 +452,7 @@ function ModelSelectorPopoverV2View(props: {
                 <For each={groups()}>
                   {(group) => (
                     <MenuV2.Group>
-                      <MenuV2.GroupLabel class="gap-2 px-3">
-                        <span class="min-w-0 truncate">{group.items[0].provider.name}</span>
-                      </MenuV2.GroupLabel>
+                      {/* DUCK_ONLY_LITELLM: single provider → no redundant "LiteLLM" group label */}
                       <MenuV2.RadioGroup value={props.current()}>
                         <For each={group.items}>
                           {(item) => (

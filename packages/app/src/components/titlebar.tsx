@@ -372,6 +372,19 @@ export function Titlebar(props: { update?: TitlebarUpdate; debugTools?: { visibl
                 <Show when={windows() || linux()}>
                   <WindowsAppMenu command={command} platform={platform} variant="v2" />
                 </Show>
+                {/* DUCK_BACK_BUTTON: back to the duck dashboard (the launcher on the base host) */}
+                <IconButtonV2
+                  type="button"
+                  variant="ghost-muted"
+                  size="large"
+                  class="!w-9 shrink-0"
+                  icon={<span class="text-[16px] leading-none font-semibold">&#8592;</span>}
+                  onClick={() => {
+                    const base = window.location.host.split(".").slice(1).join(".")
+                    if (base) window.location.href = window.location.protocol + "//" + base + "/dashboard"
+                  }}
+                  aria-label="Back to dashboard"
+                />
                 <TooltipV2
                   placement="bottom"
                   value={
@@ -646,7 +659,7 @@ function TitlebarUpdateIconButton(props: { state: TitlebarUpdatePillState }) {
 }
 
 function ChannelIndicator(props: { debugTools?: { visible: boolean; toggle: () => void } }) {
-  const channel = import.meta.env.VITE_OPENCODE_CHANNEL
+  const channel = "prod" /* DUCK_NO_DEV_BADGE */
   if (channel === "dev" && props.debugTools) {
     return (
       <button

@@ -2042,9 +2042,8 @@ export default function Page() {
           classes={{ button: compact ? "w-full !py-2" : "w-full" }}
           onClick={() => setStore("mobileTab", "changes")}
         >
-          {hasReview()
-            ? language.t("session.review.filesChanged", { count: reviewCount() })
-            : language.t("session.review.change.other")}
+          {/* DUCK_PREVIEW_TAB (mobile): the second tab is the live preview, not the diff */}
+          Preview
         </Tabs.Trigger>
       </Tabs.List>
     </Tabs>
@@ -2067,18 +2066,8 @@ export default function Page() {
       <div class="flex-1 min-h-0 overflow-hidden">
         <Switch>
           <Match when={params.id && mobileChanges()}>
-            <div class="relative h-full overflow-hidden">
-              {reviewContent({
-                diffStyle: "unified",
-                classes: {
-                  root: "pb-8 [&_[data-slot=session-review-list]]:pb-0",
-                  header: "px-4 !h-16 !pb-4",
-                  container: "px-4",
-                },
-                loadingClass: "px-4 py-4 text-text-weak",
-                emptyClass: "h-full pb-64 -mt-4 flex flex-col items-center justify-center text-center gap-6",
-              })}
-            </div>
+            {/* DUCK_PREVIEW_TAB (mobile): the live preview of the builder app, not the diff */}
+            <iframe src="/__preview/" title="Preview" class="w-full h-full border-0 bg-white" />
           </Match>
           <Match when={params.id}>
             <Show when={messagesReady() ? params.id : undefined} keyed>

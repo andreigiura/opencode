@@ -38,7 +38,7 @@ export function useNewSessionCommands(input: {
       category: language.t("command.category.project"),
       keybind: "mod+shift+o",
       disabled: input.project.empty(),
-      onSelect: input.project.open,
+      onSelect: () => {} /* DUCK_NO_PROJECT_KEYBIND */,
     },
   ])
 }

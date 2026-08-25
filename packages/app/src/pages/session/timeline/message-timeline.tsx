@@ -1521,10 +1521,7 @@ export function MessageTimeline(props: {
                       "gap-3": !settings.general.newLayoutDesigns(),
                     }}
                   >
-                    <SessionContextUsage
-                      placement="bottom"
-                      buttonAppearance={settings.general.newLayoutDesigns() ? "v2" : "default"}
-                    />
+                    {/* DUCK_PREVIEW_TAB: context/usage (Cost/Usage/Tokens) circle button removed */}
                     <Show when={!parentID()}>
                       <Show
                         when={settings.general.newLayoutDesigns()}

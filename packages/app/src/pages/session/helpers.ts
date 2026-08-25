@@ -63,14 +63,13 @@ export const createSessionTabs = (input: TabsInput) => {
     const active = input.tabs().active()
     if (active === "context") return active
     if (active === SESSION_OPEN_FILE_TAB && openFileOpen()) return active
-    if (active === "review" && review()) return active
+    if (active === "__preview") return active /* DUCK_PREVIEW_TAB */
     if (active && input.pathFromTab(active)) return input.normalizeTab(active)
 
     const first = openedTabs()[0]
     if (first) return first
     if (contextOpen()) return "context"
-    if (review() && hasReview()) return "review"
-    return "empty"
+    return "__preview" /* DUCK_PREVIEW_TAB: the panel defaults to Preview (the review/"Files Changed" tab is removed) */
   })
   const activeFileTab = createMemo(() => {
     const active = activeTab()

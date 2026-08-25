@@ -909,7 +909,7 @@ export default function LegacyLayout(props: ParentProps) {
         title: language.t("command.project.open"),
         category: language.t("command.category.project"),
         keybind: "mod+o",
-        onSelect: () => chooseProject(),
+        onSelect: () => {} /* DUCK_NO_PROJECT_KEYBIND */,
       },
       {
         id: "project.previous",
