@@ -1,49 +1,62 @@
 {
   "$schema": "https://opencode.ai/desktop-theme.json",
-  "name": "duck",
+  "name": "Studio 41",
   "id": "duck",
   "light": {
     "palette": {
-      "neutral": "#f4f1ea",
-      "ink": "#23201a",
-      "primary": "#b7791f",
-      "accent": "#8a5a13",
-      "success": "#3f7d4e",
-      "warning": "#b5502a",
-      "error": "#97374a",
-      "info": "#2b6f8f",
-      "diffAdd": "#3f7d4e",
-      "diffDelete": "#97374a"
+      "neutral": "#ffffff",
+      "ink": "#0b1220",
+      "primary": "#2457f5",
+      "accent": "#173fc4",
+      "success": "#059669",
+      "warning": "#d97706",
+      "error": "#dc2626",
+      "info": "#2563eb",
+      "diffAdd": "#059669",
+      "diffDelete": "#dc2626"
     },
     "overrides": {
-      "syntax-comment": "#8a8271",
-      "syntax-keyword": "#8a5a13",
-      "syntax-string": "#3f7d4e",
-      "syntax-primitive": "#2b6f8f",
-      "syntax-property": "#b5502a",
-      "syntax-constant": "#b7791f"
+      "background-base": "#f3f4f7",
+      "text-weak": "#8a93a3",
+      "syntax-comment": "#8a93a3",
+      "syntax-keyword": "#2457f5",
+      "syntax-string": "#059669",
+      "syntax-primitive": "#2563eb",
+      "syntax-property": "#d97706",
+      "syntax-constant": "#173fc4",
+      "syntax-punctuation": "#0b1220",
+      "markdown-heading": "#0b1220",
+      "markdown-text": "#0b1220",
+      "markdown-link": "#2457f5",
+      "markdown-code": "#059669"
     }
   },
   "dark": {
     "palette": {
-      "neutral": "#17150f",
-      "ink": "#efe9db",
-      "primary": "#e8b45a",
-      "accent": "#f0c785",
-      "success": "#7fca8c",
-      "warning": "#e8926b",
-      "error": "#e88ea0",
-      "info": "#7cc4e0",
-      "diffAdd": "#7fca8c",
-      "diffDelete": "#e88ea0"
+      "neutral": "#0b1220",
+      "ink": "#e6e8ee",
+      "primary": "#8fb0ff",
+      "accent": "#c9d3e6",
+      "success": "#34d399",
+      "warning": "#fbbf24",
+      "error": "#f87171",
+      "info": "#60a5fa",
+      "diffAdd": "#34d399",
+      "diffDelete": "#f87171"
     },
     "overrides": {
-      "syntax-comment": "#8f8672",
-      "syntax-keyword": "#f0c785",
-      "syntax-string": "#7fca8c",
-      "syntax-primitive": "#7cc4e0",
-      "syntax-property": "#e8926b",
-      "syntax-constant": "#e8b45a"
+      "text-weak": "#8a93a3",
+      "syntax-comment": "#8a93a3",
+      "syntax-keyword": "#8fb0ff",
+      "syntax-string": "#34d399",
+      "syntax-primitive": "#60a5fa",
+      "syntax-property": "#fbbf24",
+      "syntax-constant": "#c9d3e6",
+      "syntax-punctuation": "#e6e8ee",
+      "markdown-heading": "#e6e8ee",
+      "markdown-text": "#e6e8ee",
+      "markdown-link": "#8fb0ff",
+      "markdown-code": "#34d399"
     }
   }
 }
